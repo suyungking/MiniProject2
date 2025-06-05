@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	
+<mapper namespace="org.mini.member.MemberDAO">  
+<select id="getUserId" resultType="org.mini.member.Member">
+  SELECT * FROM member WHERE user_id = #{userId}
+</select>
+
+<update id="setLoginTime" parameterType="String">
+	update member 
+	set login_time = NOW() 
+	where user_id = #{userId}
+</update>
+
+
+
+<insert id="insert" parameterType="org.mini.member.Member">
+    INSERT INTO member (
+        user_id, user_passwd, user_email, user_name,
+        user_birthday, user_phone, address_number,
+        address, address_detail, gender, habit, register_time
+    ) VALUES (
+        #{userId}, #{userPasswd}, #{userEmail}, #{userName},
+        #{userBirthday}, #{userPhone}, #{addressNumber},
+        #{address}, #{addressDetail}, #{gender}, #{habit},
+        NOW()
+    )
+</insert>
+
+<update id ="update" parameterType="org.mini.member.Member">
+	update member 
+	set 
+		user_passwd = #{userPasswd},
+		user_name = #{userName},
+		user_birthday = #{userBirthday},
+		user_email = #{userEmail},
+		user_phone = #{userPhone},
+		address_number = #{addressNumber},
+		address = #{address},
+		address_detail = #{addressDetail},
+		gender = #{gender},
+		habit = #{habit}
+	where 
+		user_id = #{userId}
+		
+	
+</update>
+
+<update id ="delete" parameterType="org.mini.member.Member">
+	update member 
+	set 
+		user_delete= 'Y'
+	where 
+		user_id = #{userId}
+
+</update>
+
+<sql id="search">
+		<if test="searchValue != null and searchValue != ''">
+			where user_id LIKE CONCAT('%', #{searchValue}, '%')
+		</if>
+	</sql>
+	
+<select id="getList" parameterType="map" resultType="org.mini.member.Member">
+  SELECT * FROM member
+  <include refid="search" />
+  ORDER BY user_number DESC
+  LIMIT #{start}, #{size}
+</select>
+
+
+
+<select id="getTotalCount" parameterType="map" resultType="int">
+  SELECT COUNT(*)
+  FROM member
+  <include refid="search" />
+</select>
+
+<update id = "fail" parameterType="org.mini.member.Member">
+	update member
+	set fail_count = #{failCount},
+		user_locked = #{userLocked}
+	
+	where
+		user_id = #{userId}
+
+</update>
+
+</mapper>
+
+
+

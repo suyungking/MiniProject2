@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	
+<mapper namespace="org.mini.board.BoardDAO">
+
+<sql id="search">
+		<if test="searchValue != null and searchValue != ''">
+			AND (board_title LIKE CONCAT('%', #{searchValue}, '%')
+         OR board_writer LIKE CONCAT('%', #{searchValue}, '%'))
+		</if>
+	</sql>
+	
+<select id="getList" parameterType="map" resultType="org.mini.board.Board">
+  SELECT * FROM board
+  WHERE board_type_id = #{type}  
+ 	AND board_delete = 'N'
+  <include refid="search" />
+  ORDER BY board_number DESC
+  LIMIT #{start}, #{size}
+</select>
+
+
+
+<select id="getTotalCount" parameterType="map" resultType="int">
+  SELECT COUNT(*)
+  FROM board
+  WHERE board_type_id = #{type}
+  <include refid="search" />
+</select>
+	
+	
+
+<select id="getBoardNum" resultType="org.mini.board.Board">
+  		SELECT * FROM board WHERE board_number = #{num}
+  		
+</select>
+
+
+<insert id="insert" parameterType="org.mini.board.Board" 
+	useGeneratedKeys="true" keyProperty="boardNumber">
+    INSERT INTO board (
+        board_title, board_content, board_passwd, board_writer,
+        board_register_time, board_type_id
+       
+    ) VALUES (
+        #{boardTitle}, #{boardContent}, #{boardPasswd}, #{boardWriter},
+        NOW(), #{boardTypeId}
+    )
+</insert>
+
+<update id="viewCount">
+	update board 
+	set view_count = view_count+1 
+	where board_number = #{num}
+</update>
+
+<update id ="update" parameterType="org.mini.board.Board">
+	update board 
+	set 
+		board_title = #{boardTitle},
+		board_content = #{boardContent},
+		board_passwd = #{boardPasswd},
+		board_type_id = #{boardTypeId}
+		
+	where 
+		board_number = #{boardNumber}
+		
+	
+</update>
+
+<update id ="delete" parameterType="org.mini.board.Board">
+	update board 
+	set 
+		board_delete= 'Y'
+	where 
+		board_number = #{num}
+
+</update>
+</mapper>

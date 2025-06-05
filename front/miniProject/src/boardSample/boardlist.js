@@ -1,0 +1,35 @@
+const boardList = [
+    { num: 1, userid: "user1", title: "이거보세여", content: "흐흠" },
+  { num: 2, userid: "user2", title: "저거보세여", content: "내용입니다 2" },
+  { num: 3, userid: "user3", title: "이건 어떤가요?", content: "내용입니다 3" },
+  { num: 4, userid: "user4", title: "공지사항입니다", content: "공지 내용" },
+  { num: 5, userid: "user1", title: "질문 있어요", content: "질문 내용" },
+  { num: 6, userid: "user2", title: "답변입니다", content: "답변 내용" },
+  { num: 7, userid: "user3", title: "후기 남깁니다", content: "후기 내용" },
+  // { num: 8, userid: "user4", title: "에러가 있어요", content: "에러 설명" },
+  // { num: 9, userid: "user1", title: "Vue 좋아요", content: "Vue 짱" },
+  // { num: 10, userid: "user2", title: "React는요?", content: "React도 좋아요" },
+  // { num: 11, userid: "user3", title: "Angular은요?", content: "흠..." },
+  // { num: 12, userid: "user4", title: "Svelte도 있다", content: "알고 계셨나요?" },
+  // { num: 13, userid: "user1", title: "질문 하나 더", content: "이거 어떻게 하죠?" },
+  // { num: 14, userid: "user2", title: "답변 드림", content: "이렇게 하면 돼요" },
+  // { num: 15, userid: "user3", title: "감사 인사", content: "도움 감사합니다" },
+  // { num: 16, userid: "user4", title: "또 에러요", content: "에러가 계속 납니다" },
+  // { num: 17, userid: "user1", title: "공유합니다", content: "이거 유용해요" },
+  // { num: 18, userid: "user2", title: "템플릿 좋아요", content: "잘 쓰고 있어요" },
+  // { num: 19, userid: "user3", title: "컴포넌트화 했어요", content: "성공했어요" },
+  // { num: 20, userid: "user4", title: "버튼 안 눌림", content: "이유는 모르겠음" },
+  // { num: 21, userid: "user1", title: "이벤트 처리법", content: "onClick 대신 @click" },
+  // { num: 22, userid: "user2", title: "v-model 질문", content: "양방향 바인딩이요" },
+  // { num: 23, userid: "user3", title: "router 작동 안함", content: "path 확인했나요?" },
+  // { num: 24, userid: "user4", title: "비동기 처리", content: "Promise 써야함" },
+  // { num: 25, userid: "user1", title: "axios 쓰기", content: "GET POST 차이" },
+  // { num: 26, userid: "user2", title: "setup() 궁금", content: "Composition API" },
+  // { num: 27, userid: "user3", title: "reactive와 ref", content: "차이 알려줘요" },
+  // { num: 28, userid: "user4", title: "emit 쓰는 법", content: "자식 → 부모" },
+  // { num: 29, userid: "user1", title: "slot 예제", content: "꽤 유용하더라고요" },
+  // { num: 30, userid: "user2", title: "마무리 인사", content: "감사합니다 Vue" }
+
+] 
+
+export{boardList}
